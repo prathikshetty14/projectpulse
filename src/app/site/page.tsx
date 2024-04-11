@@ -5,13 +5,14 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card'
+} from "@/components/ui/card";
+import { pricingCards } from "@/lib/constants";
 // import { pricingCards } from '@/lib/constants'
 // import { stripe } from '@/lib/stripe'
-import clsx from 'clsx'
-import { Check } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
+import clsx from "clsx";
+import { Check } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function Home() {
   // const prices = await stripe.prices.list({
@@ -21,7 +22,7 @@ export default async function Home() {
 
   return (
     <>
-      <section className="h-full w-full md:pt-44 mt-[-70px] relative flex items-center justify-center flex-col ">
+      <section className="h-full w-full md:pt-44 md:mt-24 relative flex items-center justify-center flex-col ">
         {/* grid */}
 
         <div className="absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#161616_1px,transparent_1px),linear-gradient(to_bottom,#161616_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)] -z-10" />
@@ -29,12 +30,12 @@ export default async function Home() {
         <p className="text-center">Run your agency, in one place</p>
         <div className="bg-gradient-to-r from-primary to-secondary-foreground text-transparent bg-clip-text relative">
           <h1 className="text-6xl font-bold text-center md:text-[200px]">
-            Project Pulse
+            Pulse
           </h1>
         </div>
         <div className="flex justify-center items-center relative md:mt-[-50px]">
           <Image
-            src={'/assets/preview.png'}
+            src={"/assets/preview.png"}
             alt="banner image"
             height={1200}
             width={1200}
@@ -43,49 +44,49 @@ export default async function Home() {
           <div className="bottom-0 top-[50%] bg-gradient-to-t dark:from-background left-0 right-0 absolute z-10"></div>
         </div>
       </section>
-      <section className="flex justify-center items-center flex-col gap-4 md:!mt-20 mt-[-60px]">
+      <section className="flex justify-center items-center flex-col gap-4 md:!mt-40">
         <h2 className="text-4xl text-center"> Choose what fits you right</h2>
         <p className="text-muted-foreground text-center">
           Our straightforward pricing plans are tailored to meet your needs. If
           {" you're"} not <br />
           ready to commit you can get started for free.
         </p>
-        {/* <div className="flex  justify-center gap-4 flex-wrap mt-6">
-          {prices.data.map((card) => (
+        <div className="flex  justify-center gap-4 flex-wrap mt-6">
+          {pricingCards.map((card) => (
             //WIP: Wire up free product from stripe
             <Card
-              key={card.nickname}
+              key={card.title}
               className={clsx('w-[300px] flex flex-col justify-between', {
-                'border-2 border-primary': card.nickname === 'Unlimited Saas',
+                'border-2 border-primary': card.title === 'Unlimited Saas',
               })}
             >
               <CardHeader>
                 <CardTitle
                   className={clsx('', {
-                    'text-muted-foreground': card.nickname !== 'Unlimited Saas',
+                    'text-muted-foreground': card.title !== 'Unlimited Saas',
                   })}
                 >
-                  {card.nickname}
+                  {card.title}
                 </CardTitle>
                 <CardDescription>
                   {
-                    pricingCards.find((c) => c.title === card.nickname)
+                    pricingCards.find((c) => c.title === card.title)
                       ?.description
                   }
                 </CardDescription>
               </CardHeader>
               <CardContent>
                 <span className="text-4xl font-bold">
-                  {card.unit_amount && card.unit_amount / 100}
+                  {card.price}
                 </span>
                 <span className="text-muted-foreground">
-                  <span>/ {card.recurring?.interval}</span>
+                  <span>/ m</span>
                 </span>
               </CardContent>
               <CardFooter className="flex flex-col items-start gap-4">
                 <div>
-                  {pricingCards
-                    .find((c) => c.title === card.nickname)
+                  {card
+                    // .find((c) => c.title === card.nickname)
                     ?.features.map((feature) => (
                       <div
                         key={feature}
@@ -97,12 +98,12 @@ export default async function Home() {
                     ))}
                 </div>
                 <Link
-                  href={`/agency?plan=${card.id}`}
+                  href={`/agency?plan=${card.priceId}`}
                   className={clsx(
                     'w-full text-center bg-primary p-2 rounded-md',
                     {
                       '!bg-muted-foreground':
-                        card.nickname !== 'Unlimited Saas',
+                        card.title !== 'Unlimited Saas',
                     }
                   )}
                 >
@@ -111,7 +112,7 @@ export default async function Home() {
               </CardFooter>
             </Card>
           ))}
-          <Card className={clsx('w-[300px] flex flex-col justify-between')}>
+          {/* <Card className={clsx('w-[300px] flex flex-col justify-between')}>
             <CardHeader>
               <CardTitle
                 className={clsx({
@@ -152,9 +153,9 @@ export default async function Home() {
                 Get Started
               </Link>
             </CardFooter>
-          </Card>
-        </div> */}
+          </Card> */}
+        </div>
       </section>
     </>
-  )
+  );
 }
