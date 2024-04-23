@@ -5,6 +5,7 @@ This application is a SaaS Website Builder, Project Management And Dashboard Tha
 
 # Project Status
 
+![screencapture-localhost-3000-site-2024-04-23-11_41_18](https://github.com/prathikshetty14/projectpulse/assets/63280396/52ed71de-4534-47ba-b4db-2708ae2f7d31)
 
 
 # Project Deploy
