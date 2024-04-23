@@ -1,8 +1,13 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Project Pulse
 
-First, run the development server:
+This application is a SaaS Website Builder, Project Management And Dashboard That is Built using Nextjs14, Bun, Stripe Connect, Prisma, MySQL, Tailwind
+
+# Project Status
+
+
+
+# Project Deploy
 
 ```bash
 npm run dev
